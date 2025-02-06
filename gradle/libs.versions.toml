@@ -21,6 +21,8 @@ runtimeLivedataVersion = "1.7.7"
 uiTooling = "1.7.7"
 googleGmsGoogleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
+appcompat = "1.7.0"
+activity = "1.10.0"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPagerIndicators" }
@@ -50,6 +52,8 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 runtime-livedata = { module = "androix.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

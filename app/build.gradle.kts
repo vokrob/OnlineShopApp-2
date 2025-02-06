@@ -62,6 +62,8 @@ dependencies {
     implementation(libs.ui.tooling)
     implementation(libs.material)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
