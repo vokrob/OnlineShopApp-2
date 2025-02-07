@@ -1,4 +1,4 @@
-package com.vokrob.onlineshopapp_2
+package com.vokrob.onlineshopapp_2.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vokrob.onlineshopapp_2.R
 
 class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

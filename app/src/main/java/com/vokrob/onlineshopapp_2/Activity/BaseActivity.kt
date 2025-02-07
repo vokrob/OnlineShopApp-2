@@ -1,4 +1,4 @@
-package com.vokrob.onlineshopapp_2
+package com.vokrob.onlineshopapp_2.Activity
 
 import android.os.Bundle
 import android.view.View
