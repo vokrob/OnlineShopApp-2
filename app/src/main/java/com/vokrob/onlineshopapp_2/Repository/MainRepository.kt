@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.vokrob.onlineshopapp_2.Model.CategoryModel
 import com.vokrob.onlineshopapp_2.Model.SliderModel
 
 class MainRepository {
@@ -22,6 +23,30 @@ class MainRepository {
 
                     for (childSnapshot in snapshot.children) {
                         val item = childSnapshot.getValue(SliderModel::class.java)
+                        item?.let { lists.add(it) }
+                    }
+
+                    listData.value = lists
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            }
+        )
+
+        return listData
+    }
+
+    fun loadCategory(): LiveData<MutableList<CategoryModel>> {
+        val listData = MutableLiveData<MutableList<CategoryModel>>()
+        val ref = firebaseDatabase.getReference("Category")
+
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val lists = mutableListOf<CategoryModel>()
+
+                    for (childSnapshot in snapshot.children) {
+                        val item = childSnapshot.getValue(CategoryModel::class.java)
                         item?.let { lists.add(it) }
                     }
 
