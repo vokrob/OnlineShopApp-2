@@ -55,6 +55,8 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.vokrob.onlineshopapp_2.Model.CategoryModel
+import com.vokrob.onlineshopapp_2.Model.ItemsModel
+import com.vokrob.onlineshopapp_2.Model.ListItems
 import com.vokrob.onlineshopapp_2.Model.SliderModel
 import com.vokrob.onlineshopapp_2.R
 import com.vokrob.onlineshopapp_2.ViewModel.MainViewModel
@@ -73,9 +75,11 @@ fun MainActivityScreen() {
 
     val banners = remember { mutableStateListOf<SliderModel>() }
     val categories = remember { mutableStateListOf<CategoryModel>() }
+    val Popular = remember { mutableStateListOf<ItemsModel>() }
 
     var showBannerLoading by remember { mutableStateOf(true) }
     var showCategoryLoading by remember { mutableStateOf(true) }
+    var showPopularLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         viewModel.loadBanner().observeForever {
@@ -90,6 +94,14 @@ fun MainActivityScreen() {
             categories.clear()
             categories.addAll(it)
             showCategoryLoading = false
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.loadPopular().observeForever {
+            Popular.clear()
+            Popular.addAll(it)
+            showPopularLoading = false
         }
     }
 
@@ -155,9 +167,7 @@ fun MainActivityScreen() {
                     ) {
                         CircularProgressIndicator()
                     }
-                } else {
-                    Banners(banners)
-                }
+                } else Banners(banners)
             }
 
             item {
@@ -183,9 +193,27 @@ fun MainActivityScreen() {
                     ) {
                         CircularProgressIndicator()
                     }
-                } else {
-                    CategoryList(categories)
-                }
+                } else CategoryList(categories)
+            }
+
+            item {
+                SectionTitle(
+                    title = "Most Popular",
+                    actionText = "See All"
+                )
+            }
+
+            item {
+                if (showPopularLoading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else ListItems(Popular)
             }
         }
     }
