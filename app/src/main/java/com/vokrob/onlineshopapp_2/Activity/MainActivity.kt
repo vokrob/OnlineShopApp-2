@@ -1,5 +1,6 @@
 package com.vokrob.onlineshopapp_2.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -58,7 +60,6 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.vokrob.onlineshopapp_2.Model.CategoryModel
 import com.vokrob.onlineshopapp_2.Model.ItemsModel
-import com.vokrob.onlineshopapp_2.Model.ListItems
 import com.vokrob.onlineshopapp_2.Model.SliderModel
 import com.vokrob.onlineshopapp_2.R
 import com.vokrob.onlineshopapp_2.ViewModel.MainViewModel
@@ -249,7 +250,21 @@ fun CategoryList(categories: SnapshotStateList<CategoryModel>) {
                 onItemClick = {
                     selectedIndex = index
                     Handler(Looper.getMainLooper()).postDelayed(
-                        {},
+                        {
+                            val intent = Intent(context, ListItemsActivity::class.java).apply {
+                                putExtra(
+                                    "id",
+                                    categories[index].id.toString()
+                                )
+
+                                putExtra(
+                                    "title",
+                                    categories[index].title
+                                )
+                            }
+
+                            startActivity(context, intent, null)
+                        },
                         500
                     )
                 }
