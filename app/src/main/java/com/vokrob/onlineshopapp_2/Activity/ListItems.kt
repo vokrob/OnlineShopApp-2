@@ -1,5 +1,6 @@
 package com.vokrob.onlineshopapp_2.Activity
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
 import com.vokrob.onlineshopapp_2.Model.ItemsModel
 import com.vokrob.onlineshopapp_2.R
@@ -57,7 +59,12 @@ fun PopularItem(
                     shape = RoundedCornerShape(10.dp)
                 )
                 .height(195.dp)
-                .clickable {},
+                .clickable {
+                    val intent = Intent(context, DetailActivity::class.java).apply {
+                        putExtra("object", items[pos])
+                    }
+                    startActivity(context, intent, null)
+                },
             contentScale = ContentScale.Crop
         )
 
