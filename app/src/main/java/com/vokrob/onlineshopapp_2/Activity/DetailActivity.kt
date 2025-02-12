@@ -1,5 +1,6 @@
 package com.vokrob.onlineshopapp_2.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -65,7 +66,14 @@ class DetailActivity : BaseActivity() {
                     item.numberInCart = 1
                     managmentCart.insertItem(item)
                 },
-                onCartClick = {}
+                onCartClick = {
+                    startActivity(
+                        Intent(
+                            this,
+                            CartActivity::class.java
+                        )
+                    )
+                }
             )
         }
     }
